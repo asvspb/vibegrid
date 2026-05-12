@@ -20,6 +20,8 @@ import { useToast } from './lib/ToastContext';
 import * as htmlToImage from 'html-to-image';
 import VibeDiary from './components/VibeDiary';
 import SettingsModal from './components/SettingsModal';
+import { useAuth } from './lib/AuthContext';
+import { saveVibeDiaryEntry } from './services/dbService';
 
 export default function App() {
   const [mode, setMode] = useState<VibeMode | null>(null);
@@ -29,6 +31,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [showDiary, setShowDiary] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const { user } = useAuth();
   const [uiStyle, setUiStyle] = useState<UiStyle>(() => {
     return (localStorage.getItem('vibe_uistyle') as UiStyle) || UiStyle.DEFAULT;
   });
@@ -82,7 +85,7 @@ export default function App() {
       const themeClass = colorTheme === ColorTheme.AUTO ? baseClass : `${baseClass} color-theme-${colorTheme}`;
       document.body.className = themeClass;
     } else {
-      document.body.className = 'bg-gradient-to-br from-[#fff0f5] via-[#ffe4e1] to-[#fdf8ff] text-[#5c4a52] flex items-center justify-center min-h-screen font-sans';
+      document.body.className = 'bg-[#0f0c13] text-[#f4ebf8] flex flex-col items-center min-h-screen font-sans overflow-x-hidden selection:bg-pink-500/30';
     }
   }, [mode, colorTheme]);
 
@@ -190,11 +193,24 @@ export default function App() {
     }
   };
 
-  const handleSaveToDiary = () => {
-    const diary = JSON.parse(localStorage.getItem('vibe_diary') || '[]');
-    diary.push({ date: new Date().toISOString(), mode, items });
-    localStorage.setItem('vibe_diary', JSON.stringify(diary.slice(-20))); // Keep last 20
-    showToast('Твой вайб сохранен в дневник ✨');
+  const handleSaveToDiary = async () => {
+    if (!mode) return;
+    
+    if (user) {
+      try {
+        showToast('Сохраняем в облако...', 'loading');
+        await saveVibeDiaryEntry(mode, items);
+        showToast('Твой вайб сохранен в облачный дневник ✨');
+      } catch (e) {
+        console.error(e);
+        showToast('Ошибка при сохранении 😢');
+      }
+    } else {
+      const diary = JSON.parse(localStorage.getItem('vibe_diary') || '[]');
+      diary.push({ date: new Date().toISOString(), mode, items });
+      localStorage.setItem('vibe_diary', JSON.stringify(diary.slice(-20))); // Keep last 20
+      showToast('Твой вайб сохранен локально ✨. Войди, чтобы сохранять в облако!');
+    }
   };
 
   return (
@@ -242,7 +258,7 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="flex-1 flex flex-col items-center justify-center w-full max-w-md"
+            className="flex-1 flex flex-col items-center justify-center w-full"
           >
             <ModeSelector 
               onSelect={(m) => generateGrid(m, false)} 

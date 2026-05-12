@@ -99,18 +99,18 @@ export default function SettingsModal({ onClose, uiStyle, setUiStyle, fillStyle,
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 20 }}
-      className="absolute inset-0 z-[100] bg-[#fafafa] flex flex-col p-6 overflow-y-auto font-sans"
+      className="absolute inset-0 z-[100] bg-[#0f0c13]/95 backdrop-blur-2xl text-[#f4ebf8] flex flex-col p-6 overflow-y-auto font-sans"
     >
       <header className="flex items-center justify-between py-6 max-w-md w-full mx-auto">
-        <h2 className="text-2xl font-serif text-gray-800">Настройки визуала</h2>
-        <button onClick={onClose} className="p-2 rounded-full hover:bg-black/5 transition-colors">
-          <X size={24} className="opacity-60 text-black" />
+        <h2 className="text-2xl font-serif text-white/90">Настройки визуала</h2>
+        <button onClick={onClose} className="p-2 rounded-full hover:bg-white/5 transition-colors">
+          <X size={24} className="opacity-60 text-white" />
         </button>
       </header>
 
       <div className="flex flex-col space-y-8 max-w-md w-full mx-auto pb-12">
         <section>
-          <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">Форма карточек</h3>
+          <h3 className="text-sm font-semibold text-white/40 uppercase tracking-widest mb-4">Форма карточек</h3>
           <div className="flex flex-col space-y-3">
             {UI_STYLES.map(style => (
               <button
@@ -118,25 +118,25 @@ export default function SettingsModal({ onClose, uiStyle, setUiStyle, fillStyle,
                 onClick={() => setUiStyle(style.id)}
                 className={`p-3 rounded-2xl border text-left flex items-center justify-between transition-all ${
                   uiStyle === style.id 
-                    ? 'border-gray-900 bg-white ring-1 ring-gray-900' 
-                    : 'border-gray-200 bg-white/50 hover:bg-white hover:border-gray-300'
+                    ? 'border-white/40 bg-white/10 ring-1 ring-white/40' 
+                    : 'border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20'
                 }`}
               >
                 <div className="flex items-center space-x-4">
                   <PreviewCell styleId={style.id} fillId={fillStyle} />
                   <div>
-                    <h3 className="font-medium text-gray-900 leading-tight">{style.name}</h3>
-                    <p className="text-xs text-gray-500 mt-1 leading-snug">{style.desc}</p>
+                    <h3 className={`font-medium leading-tight ${uiStyle === style.id ? 'text-white' : 'text-white/80'}`}>{style.name}</h3>
+                    <p className="text-xs text-white/50 mt-1 leading-snug">{style.desc}</p>
                   </div>
                 </div>
-                {uiStyle === style.id && <Check size={20} className="text-gray-900 flex-shrink-0 ml-2" />}
+                {uiStyle === style.id && <Check size={20} className="text-white flex-shrink-0 ml-2" />}
               </button>
             ))}
           </div>
         </section>
 
         <section>
-          <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">Стиль закрашивания</h3>
+          <h3 className="text-sm font-semibold text-white/40 uppercase tracking-widest mb-4">Стиль закрашивания</h3>
           <div className="flex flex-col space-y-3">
             {FILL_STYLES.map(style => (
               <button
@@ -144,25 +144,25 @@ export default function SettingsModal({ onClose, uiStyle, setUiStyle, fillStyle,
                 onClick={() => setFillStyle(style.id)}
                 className={`p-3 rounded-2xl border text-left flex items-center justify-between transition-all ${
                   fillStyle === style.id 
-                    ? 'border-gray-900 bg-white ring-1 ring-gray-900' 
-                    : 'border-gray-200 bg-white/50 hover:bg-white hover:border-gray-300'
+                    ? 'border-white/40 bg-white/10 ring-1 ring-white/40' 
+                    : 'border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20'
                 }`}
               >
                 <div className="flex items-center space-x-4">
                   <PreviewCell styleId={uiStyle} fillId={style.id} />
                   <div>
-                    <h3 className="font-medium text-gray-900 leading-tight">{style.name}</h3>
-                    <p className="text-xs text-gray-500 mt-1 leading-snug">{style.desc}</p>
+                    <h3 className={`font-medium leading-tight ${fillStyle === style.id ? 'text-white' : 'text-white/80'}`}>{style.name}</h3>
+                    <p className="text-xs text-white/50 mt-1 leading-snug">{style.desc}</p>
                   </div>
                 </div>
-                {fillStyle === style.id && <Check size={20} className="text-gray-900 flex-shrink-0 ml-2" />}
+                {fillStyle === style.id && <Check size={20} className="text-white flex-shrink-0 ml-2" />}
               </button>
             ))}
           </div>
         </section>
 
         <section>
-          <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">Цветовая тема</h3>
+          <h3 className="text-sm font-semibold text-white/40 uppercase tracking-widest mb-4">Цветовая тема</h3>
           <div className="flex flex-col space-y-3">
             {COLOR_THEMES.map(theme => (
               <button
@@ -170,25 +170,25 @@ export default function SettingsModal({ onClose, uiStyle, setUiStyle, fillStyle,
                 onClick={() => setColorTheme(theme.id)}
                 className={`p-3 rounded-2xl border text-left flex items-center justify-between transition-all ${
                   colorTheme === theme.id 
-                    ? 'border-gray-900 bg-white ring-1 ring-gray-900' 
-                    : 'border-gray-200 bg-white/50 hover:bg-white hover:border-gray-300'
+                    ? 'border-white/40 bg-white/10 ring-1 ring-white/40' 
+                    : 'border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20'
                 }`}
               >
                 <div className="flex items-center space-x-4">
-                  <div className={`w-12 h-12 flex-shrink-0 rounded-xl border border-gray-200/50 ${theme.cssPattern}`} />
+                  <div className={`w-12 h-12 flex-shrink-0 rounded-xl border border-white/20 shadow-inner ${theme.cssPattern}`} />
                   <div>
-                    <h3 className="font-medium text-gray-900 leading-tight">{theme.name}</h3>
-                    <p className="text-xs text-gray-500 mt-1 leading-snug">{theme.desc}</p>
+                    <h3 className={`font-medium leading-tight ${colorTheme === theme.id ? 'text-white' : 'text-white/80'}`}>{theme.name}</h3>
+                    <p className="text-xs text-white/50 mt-1 leading-snug">{theme.desc}</p>
                   </div>
                 </div>
-                {colorTheme === theme.id && <Check size={20} className="text-gray-900 flex-shrink-0 ml-2" />}
+                {colorTheme === theme.id && <Check size={20} className="text-white flex-shrink-0 ml-2" />}
               </button>
             ))}
           </div>
         </section>
 
         <section>
-          <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">Шрифт</h3>
+          <h3 className="text-sm font-semibold text-white/40 uppercase tracking-widest mb-4">Шрифт</h3>
           <div className="flex flex-col space-y-3">
             {FONT_STYLES.map(style => (
               <button
@@ -196,56 +196,56 @@ export default function SettingsModal({ onClose, uiStyle, setUiStyle, fillStyle,
                 onClick={() => setFontStyle(style.id)}
                 className={`p-3 rounded-2xl border text-left flex items-center justify-between transition-all ${
                   fontStyle === style.id 
-                    ? 'border-gray-900 bg-white ring-1 ring-gray-900' 
-                    : 'border-gray-200 bg-white/50 hover:bg-white hover:border-gray-300'
+                    ? 'border-white/40 bg-white/10 ring-1 ring-white/40' 
+                    : 'border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20'
                 }`}
               >
                 <div className="flex items-center space-x-4">
-                  <div className={`w-12 h-12 flex-shrink-0 flex items-center justify-center text-xl font-medium bg-gray-50 border border-gray-100 rounded-xl text-gray-800 ${style.className}`}>
+                  <div className={`w-12 h-12 flex-shrink-0 flex items-center justify-center text-xl font-medium bg-white/10 border border-white/10 rounded-xl text-white ${style.className}`}>
                     Aa
                   </div>
                   <div>
-                    <h3 className={`font-medium text-gray-900 leading-tight ${style.className}`}>{style.name}</h3>
-                    <p className="text-xs text-gray-500 mt-1 leading-snug font-sans">{style.desc}</p>
+                    <h3 className={`font-medium leading-tight ${style.className} ${fontStyle === style.id ? 'text-white' : 'text-white/80'}`}>{style.name}</h3>
+                    <p className="text-xs text-white/50 mt-1 leading-snug font-sans">{style.desc}</p>
                   </div>
                 </div>
-                {fontStyle === style.id && <Check size={20} className="text-gray-900 flex-shrink-0 ml-2" />}
+                {fontStyle === style.id && <Check size={20} className="text-white flex-shrink-0 ml-2" />}
               </button>
             ))}
           </div>
         </section>
 
         <section>
-          <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">Размер шрифта</h3>
-          <div className="flex items-center space-x-4 bg-white/50 border border-gray-200 p-4 rounded-2xl">
-            <span className="text-xs font-medium text-gray-400 w-8 text-center">{fontSize}</span>
+          <h3 className="text-sm font-semibold text-white/40 uppercase tracking-widest mb-4">Размер шрифта</h3>
+          <div className="flex items-center space-x-4 bg-white/5 border border-white/10 p-4 rounded-2xl">
+            <span className="text-xs font-medium text-white/50 w-8 text-center">{fontSize}</span>
             <input 
               type="range" 
               min="8" 
               max="24" 
               value={fontSize} 
               onChange={(e) => setFontSize(Number(e.target.value))}
-              className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-gray-900"
+              className="flex-1 h-2 bg-white/20 rounded-lg appearance-none cursor-pointer accent-white"
             />
           </div>
         </section>
 
         <section>
-          <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">Отступы между ячейками</h3>
-          <div className="flex items-center space-x-4 bg-white/50 border border-gray-200 p-4 rounded-2xl">
-            <span className="text-xs font-medium text-gray-400 w-8 text-center">{cellSpacing}</span>
+          <h3 className="text-sm font-semibold text-white/40 uppercase tracking-widest mb-4">Отступы между ячейками</h3>
+          <div className="flex items-center space-x-4 bg-white/5 border border-white/10 p-4 rounded-2xl">
+            <span className="text-xs font-medium text-white/50 w-8 text-center">{cellSpacing}</span>
             <input 
               type="range" 
               min="0" 
               max="20" 
               value={cellSpacing} 
               onChange={(e) => setCellSpacing(Number(e.target.value))}
-              className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-gray-900"
+              className="flex-1 h-2 bg-white/20 rounded-lg appearance-none cursor-pointer accent-white"
             />
           </div>
         </section>
         
-        <div className="mt-4 pt-6 border-t border-gray-200 flex flex-col items-center space-y-4">
+        <div className="mt-4 pt-6 border-t border-white/10 flex flex-col items-center space-y-4">
           <button
             onClick={() => {
               setUiStyle(UiStyle.DEFAULT);
@@ -255,11 +255,11 @@ export default function SettingsModal({ onClose, uiStyle, setUiStyle, fillStyle,
               setFontSize(11);
               setCellSpacing(8);
             }}
-            className="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors px-4 py-2 rounded-lg hover:bg-black/5"
+            className="text-sm font-medium text-white/50 hover:text-white transition-colors px-4 py-2 rounded-lg hover:bg-white/10"
           >
             Сброс по умолчанию
           </button>
-          <p className="text-xs text-gray-400 text-center">Настройки применяются ко всем активным доскам. Просто закройте это окно.</p>
+          <p className="text-xs text-white/30 text-center">Настройки применяются ко всем активным доскам. Просто закройте это окно.</p>
         </div>
       </div>
     </motion.div>

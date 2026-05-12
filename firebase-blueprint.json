@@ -1,0 +1,56 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User profile containing basic settings and stats",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "theme": { "type": "string" },
+        "completedBingos": { "type": "number" },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["uid", "createdAt"]
+    },
+    "SavedGrid": {
+      "title": "Saved Grid",
+      "description": "A generated bingo grid saved by the user from which they can resume playing",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "mode": { "type": "string" },
+        "title": { "type": "string" },
+        "items": { "type": "array" },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["userId", "mode", "items", "createdAt"]
+    },
+    "VibeDiaryEntry": {
+      "title": "Vibe Diary Entry",
+      "description": "An entry reflecting a completed grid or mood logged into the vibe diary",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "mode": { "type": "string" },
+        "items": { "type": "array" },
+        "date": { "type": "string" },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["userId", "mode", "items", "date", "createdAt"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": { "$ref": "User" },
+      "description": "Profiles mapping UI/UX preferences per user."
+    },
+    "saved_grids/{gridId}": {
+      "schema": { "$ref": "SavedGrid" },
+      "description": "Store individual saved grid configurations per user."
+    },
+    "vibe_diary/{diaryId}": {
+      "schema": { "$ref": "VibeDiaryEntry" },
+      "description": "Entries appended strictly to list vibes/logs over dates."
+    }
+  }
+}

@@ -57,7 +57,23 @@
     -webkit-tap-highlight-color: transparent;
   }
 
+  /* Atmospheric default background */
+  body:not([class*="theme-"]) {
+    background:
+      radial-gradient(circle at 80% -20%, rgba(255, 42, 109, 0.15) 0%, transparent 60%),
+      radial-gradient(circle at -20% 120%, rgba(5, 213, 255, 0.15) 0%, transparent 60%),
+      #0f0c13;
+  }
+
   /* Define theme classes for body */
+  :root {
+    --theme-bg: #141018; /* Slightly lighter than body for cards */
+    --theme-text: #f4ebf8;
+    --theme-card: #1f1926;
+    --theme-strike: #ff2a6d;
+    --theme-highlight: rgba(255, 42, 109, 0.2);
+  }
+
   .theme-comfort {
     --theme-bg: var(--color-comfort-bg);
     --theme-text: var(--color-comfort-text);
