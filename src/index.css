@@ -1,0 +1,200 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@400;500;700&family=Caveat:wght@400;500;600;700&family=Syne:wght@400;600;700&display=swap');
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-playfair: "Playfair Display", ui-serif, Georgia, serif;
+  --font-space: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-caveat: "Caveat", cursive;
+  --font-syne: "Syne", sans-serif;
+
+  /* Mode 1: Comfort (Teapot) */
+  --color-comfort-bg: #f8f1ed;
+  --color-comfort-accent: #b4c7b9; /* Sage */
+  --color-comfort-text: #5d5451;
+  --color-comfort-card: #ffffff;
+  --color-comfort-strike: #f87171; /* red-400 */
+  --color-comfort-highlight: rgba(254, 240, 138, 0.4); /* yellow-200/40 */
+
+  /* Mode 2: Chaotic (Brain) */
+  --color-chaotic-bg: #0a0a0a;
+  --color-chaotic-accent: #00ff41; /* Neo-Matrix Green */
+  --color-chaotic-text: #ffffff;
+  --color-chaotic-card: #1a1a1a;
+  --color-chaotic-strike: #ff003c; /* Cyberpunk Red */
+  --color-chaotic-highlight: rgba(0, 255, 65, 0.3);
+
+  /* Mode 3: Aesthetic (Sparkles) */
+  --color-aesthetic-bg: #e5e5e5; /* Craft paper feel */
+  --color-aesthetic-accent: #8b7355; 
+  --color-aesthetic-text: #2c2c2c;
+  --color-aesthetic-card: #f9f9f9;
+  --color-aesthetic-strike: #a8a29e; /* stone-400 */
+  --color-aesthetic-highlight: rgba(214, 211, 209, 0.6); /* stone-300 */
+
+  /* Mode 4: Nature (Goblin) */
+  --color-nature-bg: #e6e2d3;
+  --color-nature-accent: #556b2f;
+  --color-nature-text: #2f4f4f;
+  --color-nature-card: #d2cfae;
+  --color-nature-strike: #8b4513; /* saddlebrown */
+  --color-nature-highlight: rgba(85, 107, 47, 0.3);
+
+  /* Mode 5: Dark Academia */
+  --color-dark-academia-bg: #1e1a17;
+  --color-dark-academia-accent: #cfa86e;
+  --color-dark-academia-text: #e8dcc7;
+  --color-dark-academia-card: #2c2621;
+  --color-dark-academia-strike: #8b0000; /* darkred */
+  --color-dark-academia-highlight: rgba(207, 168, 110, 0.2);
+}
+
+@layer base {
+  body {
+    @apply transition-colors duration-700 ease-in-out antialiased overflow-hidden select-none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Define theme classes for body */
+  .theme-comfort {
+    --theme-bg: var(--color-comfort-bg);
+    --theme-text: var(--color-comfort-text);
+    --theme-card: var(--color-comfort-card);
+    --theme-accent: var(--color-comfort-accent);
+    --theme-strike: var(--color-comfort-strike);
+    --theme-highlight: var(--color-comfort-highlight);
+    background-color: var(--theme-bg);
+    color: var(--theme-text);
+    font-family: var(--font-sans);
+  }
+
+  .theme-chaotic {
+    --theme-bg: var(--color-chaotic-bg);
+    --theme-text: var(--color-chaotic-text);
+    --theme-card: var(--color-chaotic-card);
+    --theme-accent: var(--color-chaotic-accent);
+    --theme-strike: var(--color-chaotic-strike);
+    --theme-highlight: var(--color-chaotic-highlight);
+    background-color: var(--theme-bg);
+    color: var(--theme-text);
+    font-family: var(--font-mono);
+    font-weight: 500;
+  }
+
+  .theme-aesthetic {
+    --theme-bg: var(--color-aesthetic-bg);
+    --theme-text: var(--color-aesthetic-text);
+    --theme-card: var(--color-aesthetic-card);
+    --theme-accent: var(--color-aesthetic-accent);
+    --theme-strike: var(--color-aesthetic-strike);
+    --theme-highlight: var(--color-aesthetic-highlight);
+    background-color: var(--theme-bg);
+    color: var(--theme-text);
+    font-family: var(--font-serif);
+    font-style: italic;
+    background-image: radial-gradient(#d1d1d1 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .theme-nature {
+    --theme-bg: var(--color-nature-bg);
+    --theme-text: var(--color-nature-text);
+    --theme-card: var(--color-nature-card);
+    --theme-accent: var(--color-nature-accent);
+    --theme-strike: var(--color-nature-strike);
+    --theme-highlight: var(--color-nature-highlight);
+    background-color: var(--theme-bg);
+    color: var(--theme-text);
+    font-family: var(--font-sans);
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23556b2f' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .theme-dark-academia {
+    --theme-bg: var(--color-dark-academia-bg);
+    --theme-text: var(--color-dark-academia-text);
+    --theme-card: var(--color-dark-academia-card);
+    --theme-accent: var(--color-dark-academia-accent);
+    --theme-strike: var(--color-dark-academia-strike);
+    --theme-highlight: var(--color-dark-academia-highlight);
+    background-color: var(--theme-bg);
+    color: var(--theme-text);
+    font-family: var(--font-serif);
+    background-image: radial-gradient(circle at 50% 50%, rgba(207, 168, 110, 0.05) 0%, transparent 100%), linear-gradient(rgba(0,0,0,0.2) 2px, transparent 2px), linear-gradient(90deg, rgba(0,0,0,0.2) 2px, transparent 2px);
+    background-size: 100% 100%, 100px 100px, 100px 100px;
+    background-position: center, -2px -2px, -2px -2px;
+  }
+
+  /* Color Theme Overrides */
+  body.color-theme-light {
+    --theme-bg: #fafafa;
+    --theme-text: #111827;
+    --theme-card: #ffffff;
+    --theme-accent: #d1d5db;
+    --theme-strike: #ef4444; /* red-500 */
+    --theme-highlight: rgba(253, 224, 71, 0.4); /* yellow-300 */
+    background-color: var(--theme-bg) !important;
+    color: var(--theme-text) !important;
+    background-image: none !important;
+  }
+
+  body.color-theme-dark {
+    --theme-bg: #121212;
+    --theme-text: #e5e7eb;
+    --theme-card: #262626;
+    --theme-accent: #4b5563;
+    --theme-strike: #f87171; /* red-400 */
+    --theme-highlight: rgba(253, 224, 71, 0.2);
+    background-color: var(--theme-bg) !important;
+    color: var(--theme-text) !important;
+    background-image: none !important;
+  }
+
+  body.color-theme-pastel {
+    --theme-bg: #fdf4ff;
+    --theme-text: #831843;
+    --theme-card: #fce7f3;
+    --theme-accent: #fbcfe8;
+    --theme-strike: #be185d; /* pink-700 */
+    --theme-highlight: rgba(244, 114, 182, 0.3); /* pink-400 */
+    background-color: var(--theme-bg) !important;
+    color: var(--theme-text) !important;
+    background-image: none !important;
+  }
+
+  body.color-theme-neon {
+    --theme-bg: #000000;
+    --theme-text: #39ff14;
+    --theme-card: #111111;
+    --theme-accent: #39ff14;
+    --theme-strike: #ff00ff; /* Magenta */
+    --theme-highlight: rgba(57, 255, 20, 0.3);
+    background-color: var(--theme-bg) !important;
+    color: var(--theme-text) !important;
+    background-image: none !important;
+  }
+
+  body.color-theme-monochrome {
+    --theme-bg: #e5e5e5;
+    --theme-text: #1a1a1a;
+    --theme-card: #f5f5f5;
+    --theme-accent: #888888;
+    --theme-strike: #737373; /* neutral-500 */
+    --theme-highlight: rgba(163, 163, 163, 0.4);
+    background-color: var(--theme-bg) !important;
+    color: var(--theme-text) !important;
+    filter: grayscale(100%);
+    background-image: none !important;
+  }
+}
+
+/* Custom animations for bingo cells */
+@keyframes watercolor-spread {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1.2); opacity: 0.6; }
+}
+
+.animate-watercolor {
+  animation: watercolor-spread 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
