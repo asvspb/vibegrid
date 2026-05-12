@@ -190,7 +190,7 @@ export default function BingoCell({ item, mode, uiStyle, fillStyle, onToggle, on
   const getStyleClasses = () => {
     switch (uiStyle) {
       case UiStyle.MINIMAL:
-        return 'bg-transparent border-[0.5px] border-current opacity-80 hover:opacity-100 rounded-sm';
+        return 'bg-transparent border border-[var(--theme-text)] border-opacity-30 hover:border-opacity-50 rounded-sm';
       case UiStyle.BRUTALISM:
         return 'bg-[var(--theme-bg)] border-2 border-[var(--theme-text)] shadow-[3px_3px_0px_0px_var(--theme-text)] text-[var(--theme-text)] rounded-none';
       case UiStyle.GLASS:

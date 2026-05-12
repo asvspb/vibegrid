@@ -99,11 +99,7 @@ export default function BingoGrid({ items, mode, uiStyle, fillStyle, fontStyle =
           const endX = (endIdx % 5) * 20 + 10;
           const endY = Math.floor(endIdx / 5) * 20 + 10;
 
-          let strokeColor = "#8b7355"; // Comfort/Aesthetic
-          if (mode === VibeMode.CHAOTIC) strokeColor = "#00ff41";
-          if (mode === VibeMode.NATURE) strokeColor = "#556b2f";
-          if (mode === VibeMode.DARK_ACADEMIA) strokeColor = "#cfa86e";
-
+          let strokeColor = "var(--theme-text)";
           return (
             <motion.line
               key={`line-${i}`}
@@ -115,9 +111,10 @@ export default function BingoGrid({ items, mode, uiStyle, fillStyle, fontStyle =
               animate={{ pathLength: 1, opacity: 1 }}
               transition={{ duration: 1.5, ease: "easeInOut" }}
               stroke={strokeColor}
-              strokeWidth="3"
-              strokeDasharray="4 4"
-              className="mix-blend-multiply opacity-40"
+              strokeWidth="2"
+              strokeDasharray="4 6"
+              style={{ strokeOpacity: 0.35 }}
+              className="pointer-events-none mix-blend-multiply"
             />
           );
         })}
